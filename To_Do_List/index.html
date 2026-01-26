@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-tasks"></i> TaskMaster</h1>
+            <p class="subtitle">Organize your tasks efficiently and boost your productivity</p>
+        </header>
+        
+        <div class="app-content">
+            <div class="input-section">
+                <input type="text" id="taskInput" placeholder="Add a new task...">
+                <button id="addBtn"><i class="fas fa-plus"></i> Add Task</button>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All Tasks</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="today">Today</button>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="totalTasks">0</div>
+                    <div>Total Tasks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="pendingTasks">0</div>
+                    <div>Pending</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="completedTasks">0</div>
+                    <div>Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="todayTasks">0</div>
+                    <div>Due Today</div>
+                </div>
+            </div>
+            
+            <div class="task-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search tasks...">
+                </div>
+                <div class="sort-options">
+                    <select id="sortSelect">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="name">By Name</option>
+                        <option value="priority">By Priority</option>
+                    </select>
+                </div>
+            </div>
+            
+            <ul id="taskList">
+                <!-- Tasks will be added here dynamically -->
+            </ul>
+            
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>No tasks yet</h3>
+                <p>Add a new task using the input field above</p>
+            </div>
+            
+            <div class="bulk-actions">
+                <button id="clearCompleted" class="bulk-btn">
+                    <i class="fas fa-check-double"></i> Clear Completed
+                </button>
+                <button id="deleteAll" class="bulk-btn delete-all">
+                    <i class="fas fa-trash"></i> Delete All
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p>TaskMaster &copy; <span id="currentYear"></span> | Double-click on a task to mark as complete</p>
+            <p class="footer-note"><i class="fas fa-info-circle"></i> Tasks are saved in your browser's local storage</p>
+        </footer>
+    </div>
+
+    <!-- Task Details Modal -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Task Details</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="editTaskText">Task Description</label>
+                    <textarea id="editTaskText" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editTaskPriority">Priority</label>
+                    <select id="editTaskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editTaskDueDate">Due Date</label>
+                    <input type="date" id="editTaskDueDate">
+                </div>
+                <div class="form-group">
+                    <label for="editTaskCategory">Category</label>
+                    <select id="editTaskCategory">
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="health">Health</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="saveTaskBtn" class="btn-primary">Save Changes</button>
+                <button class="btn-secondary close-modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Priority Legend -->
+    <div class="priority-legend">
+        <div class="legend-item">
+            <span class="priority-dot high"></span> High
+        </div>
+        <div class="legend-item">
+            <span class="priority-dot medium"></span> Medium
+        </div>
+        <div class="legend-item">
+            <span class="priority-dot low"></span> Low
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
